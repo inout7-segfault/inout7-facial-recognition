@@ -1,13 +1,15 @@
-import pickle, face_recognition, imageio
+import os
+import pickle
+
+import face_recognition
 import pandas as pd
 from mtcnn.mtcnn import MTCNN
-from sklearn.svm import SVC
 
 FOLDER_PATH = os.getcwd()
 
-roll_data = pd.read_csv("Training/students.csv")
+roll_data = pd.read_csv("training/students.csv")
 
-loaded_model = pickle.load(open("Training/model.sav", "rb"))
+loaded_model = pickle.load(open("training/model.sav", "rb"))
 
 
 def find_student(img):
@@ -20,7 +22,6 @@ def find_student(img):
         encodings = face_recognition.face_encodings(img, [box])
         predictions = loaded_model.predict_proba(encodings)
         index = loaded_model.predict(encodings)
-        temp = predictions[0]
 
         print(predictions[0][index][0])
         print(roll_data[roll_data["Roll"] == index[0]]["Name"].values)

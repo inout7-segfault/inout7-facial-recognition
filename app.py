@@ -1,7 +1,10 @@
 from logging.config import dictConfig
-from predict import find_student
-from flask import Flask, redirect, render_template, request
+
+import numpy as np
+from flask import Flask, render_template, request
 from PIL import Image
+
+from predict import find_student
 
 dictConfig(
     {
@@ -41,7 +44,7 @@ def upload():
 
         image = Image.open(image)
 
-        roll_no, name = find_student(image)
+        roll_no, name = find_student(np.array(image))
 
     return render_template("upload.html")
 

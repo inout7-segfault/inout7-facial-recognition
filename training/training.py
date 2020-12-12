@@ -1,12 +1,12 @@
-import os
 import csv
+import os
 import pickle
-import numpy as np
-import imageio
-from mtcnn.mtcnn import MTCNN
-from sklearn.svm import SVC
-import face_recognition
 
+import face_recognition
+import numpy as np
+from mtcnn.mtcnn import MTCNN
+from PIL import Image
+from sklearn.svm import SVC
 
 # Path to directory containing images to train
 PATH = "/home/prajith_v/Pictures/pic_to_train_2"
@@ -37,7 +37,7 @@ for folder in names:
     print(f"Training {path_folder}")
 
     for image in os.listdir(path_folder):
-        img = imageio.imread(f"{path_folder}/{image}")
+        img = np.array(Image.open(f"{path_folder}/{image}"))
         faces = detector.detect_faces(img)
 
         if len(faces) != 0:
