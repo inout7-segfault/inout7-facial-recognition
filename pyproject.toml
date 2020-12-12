@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "webcam_image_upload"
+version = "0.1.0"
+description = ""
+authors = ["Sanchith Hegde <sanchith.hegde01@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+Flask = "^1.1.2"
+flask-uploads = {git = "https://github.com/maxcountryman/flask-uploads.git"}
+
+[tool.poetry.dev-dependencies]
+black = {version = "^20.8b1", allow-prereleases = true}
+livereload = "2.5.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
