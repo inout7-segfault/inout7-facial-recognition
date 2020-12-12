@@ -37,9 +37,6 @@ def capture():
 @app.route("/upload", methods=["GET", "POST"])
 def upload():
     if request.method == "POST":
-        print(request.form)
-        height = request.form["height"]
-        width = request.form["width"]
         image = request.files["image"]
 
         image = Image.open(image)
