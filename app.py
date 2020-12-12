@@ -41,7 +41,7 @@ def upload():
 
         image = Image.open(image)
 
-        roll_no , name = find_student(image)
+        roll_no, name = find_student(image)
 
     return render_template("upload.html")
 

@@ -20,7 +20,7 @@ CSV_FILE = "students.csv"
 names = os.listdir(PATH)
 mapping = {v: i for i, v in enumerate(names)}
 
-#TODO: have to change the below code to pandas and add column names as "Roll" and "Name" , now has hardcoded column names
+# TODO: have to change the below code to pandas and add column names as "Roll" and "Name" , now has hardcoded column names
 
 with open(CSV_FILE, "w") as file:
     rows_list = [{"roll_num": i, "name": v} for i, v in enumerate(names)]

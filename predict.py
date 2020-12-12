@@ -1,4 +1,4 @@
-import pickle,face_recognition,imageio
+import pickle, face_recognition, imageio
 import pandas as pd
 from mtcnn.mtcnn import MTCNN
 from sklearn.svm import SVC
@@ -23,6 +23,6 @@ def find_student(img):
         temp = predictions[0]
 
         print(predictions[0][index][0])
-        print(roll_data[roll_data["Roll"]==index[0]]["Name"].values)
-        
-        return index,roll_data[roll_data["Roll"]==index[0]]["Name"].values
+        print(roll_data[roll_data["Roll"] == index[0]]["Name"].values)
+
+        return index, roll_data[roll_data["Roll"] == index[0]]["Name"].values
