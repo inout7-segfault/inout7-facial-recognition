@@ -1,18 +1,24 @@
 [tool.poetry]
-name = "webcam_image_upload"
-version = "0.1.0"
+name        = "webcam_image_upload"
+version     = "0.1.0"
 description = ""
-authors = ["Sanchith Hegde <sanchith.hegde01@gmail.com>"]
+authors     = [ "Sanchith Hegde <sanchith.hegde01@gmail.com>" ]
 
 [tool.poetry.dependencies]
-python = "^3.8"
-Flask = "^1.1.2"
-Pillow = "^8.0.1"
+python           = "^3.8"
+Flask            = "^1.1.2"
+Pillow           = "^8.0.1"
+face-recognition = "^1.3.0"
+pandas           = "^1.1.5"
+mtcnn            = "^0.1.0"
+sklearn          = "^0.0"
+tensorflow = "^2.3.1"
 
 [tool.poetry.dev-dependencies]
-black = {version = "^20.8b1", allow-prereleases = true}
-livereload = "2.5.1"
+black      = { version = "^20.8b1", allow-prereleases = true }
+livereload = { version = "^2.6.3", optional = true }
+pylint     = { version = "^2.6.0", optional = true }
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires      = [ "poetry-core>=1.0.0" ]
 build-backend = "poetry.core.masonry.api"
