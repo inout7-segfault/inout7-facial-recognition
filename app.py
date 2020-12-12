@@ -1,5 +1,5 @@
 from logging.config import dictConfig
-
+from predict import find_student
 from flask import Flask, redirect, render_template, request
 from PIL import Image
 
@@ -41,7 +41,7 @@ def upload():
 
         image = Image.open(image)
 
-        # Continue
+        roll_no , name = find_student(image)
 
     return render_template("upload.html")
 
