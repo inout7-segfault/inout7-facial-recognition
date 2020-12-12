@@ -1,7 +1,7 @@
 from logging.config import dictConfig
 
-import flask_uploads
 from flask import Flask, redirect, render_template, request
+from PIL import Image
 
 dictConfig(
     {
@@ -29,13 +29,6 @@ dictConfig(
 app = Flask(__name__)
 
 
-photos = flask_uploads.UploadSet(
-    name="photos", extensions=flask_uploads.IMAGES, default_dest=lambda _: "photos"
-)
-flask_uploads.configure_uploads(app, [photos])
-flask_uploads.patch_request_class(app=app, size=4 * 1024 * 1024)
-
-
 @app.route("/capture")
 def capture():
     return render_template("capture.html")
@@ -43,10 +36,15 @@ def capture():
 
 @app.route("/upload", methods=["GET", "POST"])
 def upload():
-    if request.method == "POST" and "capture" in request.files:
-        filename = photos.save(request.files["capture"])
-        path_to_file = photos.path(filename)
-        app.logger.info(path_to_file)
+    if request.method == "POST":
+        print(request.form)
+        height = request.form["height"]
+        width = request.form["width"]
+        image = request.files["image"]
+
+        image = Image.open(image)
+
+        # Continue
 
     return render_template("upload.html")
 

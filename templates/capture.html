@@ -111,28 +111,38 @@
 </script>
 -->
 <script type="text/javascript">
-  (() => {
-    var imageCapture;
-    var startbutton = document.getElementById('startbutton');
+  window.addEventListener('load', (() => {
+    var imageCapture = null;
+    var startbutton = null;
+    startbutton = document.getElementById('startbutton');
 
     navigator.mediaDevices.getUserMedia({
       video: true,
       audio: false
     }).then(mediaStream => {
-      imageCapture = new imageCapture(mediaStream.getVideoTracks()[0]);
+      imageCapture = new ImageCapture(mediaStream.getVideoTracks()[0]);
     }).catch(error => console.log(error));
+
+    var formData = new FormData();
 
     startbutton.addEventListener('click', event => {
       imageCapture.takePhoto()
-        .then(blob => createImageBitmap(blob))
+        .then(blob => {
+          formData.append('image', blob, 'capture.png');
+          return createImageBitmap(blob);
+        })
         .then(imageBitmap => {
-          const canvas = document.getElementById('canvas');
-          // TODO: CONTINUE
-          drawCanvas(canvas, imageBitmap);
+          formData.append('height', imageBitmap.height);
+          formData.append('width', imageBitmap.width);
+
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', '/upload', true);
+          //xhr.onload = function(e) { ... };
+          xhr.send(formData);
         })
         .catch(error => console.log(error));
     }, false);
-  })();
+  }));
 </script>
 {% endblock %}
 
