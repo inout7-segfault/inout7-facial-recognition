@@ -2,6 +2,7 @@ import csv
 import os
 import pickle
 
+import pandas as pd
 import face_recognition
 import numpy as np
 from mtcnn.mtcnn import MTCNN
@@ -20,12 +21,9 @@ CSV_FILE = "students.csv"
 names = os.listdir(PATH)
 mapping = {v: i for i, v in enumerate(names)}
 
-# TODO: have to change the below code to pandas and add column names as "Roll" and "Name" , now has hardcoded column names
 
-with open(CSV_FILE, "w") as file:
-    rows_list = [{"roll_num": i, "name": v} for i, v in enumerate(names)]
-    writer = csv.DictWriter(f=file, fieldnames=["roll_num", "name"])
-    writer.writerows(rows_list)
+pd_csv = pd.DataFrame({"Roll":[mapping[i] for i in mapping.keys()],"Name":[i for i in mapping.keys()]})
+pd_csv.to_csv(CSV_FILE,sep=',')
 
 detector = MTCNN()
 
@@ -53,7 +51,7 @@ for folder in names:
 face_image_encodings = np.array(encodings)
 face_image_labels = np.array(labels)
 
-model = SVC(kernel="rbf", probability=True)
+model = SVC(kernel="sigmoid", probability=True)
 model.fit(
     np.reshape(face_image_encodings, (face_image_encodings.shape[0], 128)),
     face_image_labels,
