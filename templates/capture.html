@@ -23,7 +23,7 @@
       if (!sessionStorage["counter"]) {
         sessionStorage.setItem("counter", 10);
       }
-      if (sessionStorage.getItem("counter") === 0) {
+      if (Number(sessionStorage.getItem("counter")) === 0) {
         sessionStorage.removeItem("counter");
         return;
       }
