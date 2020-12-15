@@ -17,10 +17,14 @@
       imageCapture = new ImageCapture(mediaStream.getVideoTracks()[0]);
     }).catch(error => console.log(error));
 
-    var counter = 10;
+    // var counter = 10;
 
     function sendPhoto() {
-      if (counter === 0) {
+      if (!sessionStorage["counter"]) {
+        sessionStorage.setItem("counter", 10);
+      }
+      if (sessionStorage.getItem("counter") === 0) {
+        sessionStorage.removeItem("counter");
         return;
       }
 
@@ -35,7 +39,9 @@
         })
         .catch(error => console.log(error));
 
-      counter -= 1;
+      let tmp = sessionStorage.getItem("counter");
+      tmp -= 1;
+      sessionStorage.setItem("counter", tmp)
       setTimeout(sendPhoto, 10000);
     }
 
