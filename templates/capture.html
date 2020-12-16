@@ -7,8 +7,8 @@
 <script type="text/javascript">
   window.addEventListener('load', (() => {
     var imageCapture = null;
-    var startbutton = null;
-    startbutton = document.getElementById('startbutton');
+    var attendanceButton = null;
+    attendanceButton = document.getElementById('attendanceButton');
 
     navigator.mediaDevices.getUserMedia({
       video: true,
@@ -17,13 +17,13 @@
       imageCapture = new ImageCapture(mediaStream.getVideoTracks()[0]);
     }).catch(error => console.log(error));
 
-    // var counter = 10;
-
     function sendPhoto() {
       if (!sessionStorage["counter"]) {
+        document.getElementById('attendanceButton').disabled = true;
         sessionStorage.setItem("counter", 10);
       }
       if (Number(sessionStorage.getItem("counter")) === 0) {
+        document.getElementById('attendanceButton').disabled = false;
         sessionStorage.removeItem("counter");
         return;
       }
@@ -45,7 +45,7 @@
       setTimeout(sendPhoto, 10000);
     }
 
-    startbutton.addEventListener('click', sendPhoto, false);
+    attendanceButton.addEventListener('click', sendPhoto, false);
   }));
 </script>
 {% endblock %}
@@ -54,6 +54,6 @@
 
 {% block content %}
 
-<button id="startbutton">Take photo</button>
+<button id="attendanceButton">Take Attendance</button>
 
 {% endblock  %}
