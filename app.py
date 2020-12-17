@@ -121,10 +121,10 @@ def upload():
     if request.method == "POST":
         image = request.files["image"]
 
-        # course = request.files["course"]
-        # slot = request.files["slot"]
-        course = "CS510"
-        slot += 1
+        course = request.form["course"]
+        slot = int(request.form["slot"])
+        # course = "CS510"
+        # slot += 1
         image = Image.open(image)
 
         student_details = find_student(np.array(image))

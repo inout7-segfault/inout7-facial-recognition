@@ -39,6 +39,9 @@ Attendance Capture
         .then(blob => {
           var formData = new FormData();
           formData.append('image', blob, 'capture.png');
+          formData.append('course', 'CS510');
+          formData.append('slot', 2);
+
           var xhr = new XMLHttpRequest();
           xhr.open('POST', '/upload', true);
           //xhr.onload = function(e) { ... };
