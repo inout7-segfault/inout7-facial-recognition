@@ -1,8 +1,14 @@
-{% extends "base.html" %}
+{% extends "bootstrap/base.html" %}
 
-{% block head %}
+{% block title %}
+Attendance Capture
+{% endblock %}
 
-{{ super() }}
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='starter-template.css')}}">
+{% endblock %}
+
 
 <script type="text/javascript">
   window.addEventListener('load', (() => {
@@ -48,9 +54,7 @@
     attendanceButton.addEventListener('click', sendPhoto, false);
   }));
 </script>
-{% endblock %}
 
-{% block title %}Capture{% endblock %}
 
 {% block content %}
 
