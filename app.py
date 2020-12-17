@@ -104,6 +104,8 @@ def upload():
 
         print(f"present : {student_details['Name']} with acc : {student_details['accuracy']}")
 
+        return 'Success'
+
     return render_template("upload.html")
 
 @app.route('/logout')
