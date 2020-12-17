@@ -4,6 +4,7 @@ import pickle
 import face_recognition
 import pandas as pd
 from mtcnn.mtcnn import MTCNN
+from database import get_student
 
 FOLDER_PATH = os.getcwd()
 
@@ -22,8 +23,7 @@ def find_student(img):
         encodings = face_recognition.face_encodings(img, [box])
         predictions = loaded_model.predict_proba(encodings)
         index = loaded_model.predict(encodings)
+        student_details = get_student(int(index[0]))
+        student_details["accuracy"] = predictions[0][index][0]
 
-        print(predictions[0][index][0])
-        print(roll_data[roll_data["Roll"] == index[0]]["Name"].values)
-
-        return index, roll_data[roll_data["Roll"] == index[0]]["Name"].values
+        return student_details
