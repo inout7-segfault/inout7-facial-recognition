@@ -57,7 +57,34 @@ Attendance Capture
 
 
 {% block content %}
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Attendance Marker</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+<div class="container">
 
-<button id="attendanceButton">Take Attendance</button>
+  <div class="starter-template">
+    <h1>Attendance is being marked</h1>
+    <p class="lead">Please make sure to sit in the center and postion yourself with respect to your camera before clicking on the take attendance button as your attendance is being marked.</p>
+  </div>
+  <button id="attendanceButton">Take Attendance</button>
+
+</div>
 
 {% endblock  %}
