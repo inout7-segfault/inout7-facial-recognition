@@ -79,13 +79,13 @@ Course.__table__.create(checkfirst=True)
 INSERTION_LOCK = threading.RLock()
 
 def get_all_students():
-    return SESSION.query(Students)
+    return SESSION.query(Students).all()
 
 def get_all_courses():
-    return SESSION.query(Course)
+    return SESSION.query(Course).all()
 
 def get_all_attendance():
-    return SESSION.query(Attendance)
+    return SESSION.query(Attendance).all()
 
 
 def add_attendance(student_id: int , date: str, course: str, slot: int):
@@ -104,9 +104,10 @@ def add_attendance(student_id: int , date: str, course: str, slot: int):
 
     else:
         # update
-        obj.present+=1
-        SESSION.flush()
-        SESSION.commit()
+        with INSERTION_LOCK:
+            obj.present+=1
+            SESSION.flush()
+            SESSION.commit()
 
 
 def get_student(roll_num: int):

@@ -8,8 +8,6 @@ from database import get_student
 
 FOLDER_PATH = os.getcwd()
 
-roll_data = pd.read_csv("training/students.csv")
-
 loaded_model = pickle.load(open("training/model.sav", "rb"))
 
 
