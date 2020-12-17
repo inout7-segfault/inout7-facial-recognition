@@ -14,7 +14,7 @@ from flask_login import LoginManager, UserMixin, login_user,login_required,logou
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SECRETISTHATPRAHASITHISTHEBEST'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///home/prahasith/Desktop/inout7-facial-recognition/database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 Bootstrap(app)
 db = SQLAlchemy(app)
 login_manager = LoginManager()
