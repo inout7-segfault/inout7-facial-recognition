@@ -22,8 +22,10 @@ names = os.listdir(PATH)
 mapping = {v: i for i, v in enumerate(names)}
 
 
-pd_csv = pd.DataFrame({"Roll":[mapping[i] for i in mapping.keys()],"Name":[i for i in mapping.keys()]})
-pd_csv.to_csv(CSV_FILE,sep=',')
+pd_csv = pd.DataFrame(
+    {"Roll": [mapping[i] for i in mapping.keys()], "Name": [i for i in mapping.keys()]}
+)
+pd_csv.to_csv(CSV_FILE, sep=",")
 
 detector = MTCNN()
 
