@@ -50,7 +50,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user:
-            if user.password == form.password.data:
+            if check_password_hash(user.password, form.password.data):
                 return redirect(url_for('dashboard'))
         return '<h1>Invalid Username or password</h1>'
     
